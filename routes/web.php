@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['middleware'=>'auth'],function(){
+
+    //'as'=> 'admin.' => route name would start like 'admin.bla bla'
+    Route::group(['prefix' => 'admin','as'=> 'admin.', 'middleware'=>'is_admin'],function(){
+        Route::resource('pages',Controllers\Admin\PageController::class);
+    });
+
+});

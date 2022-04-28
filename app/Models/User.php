@@ -12,6 +12,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ADMIN_ROLE_ID = 1;
+    const MANAGER_ROLE_ID = 2;
+    const USER_ROLE_ID = 3;
+
+    //php artisan tinker
+    //User::create(['name'=>'Manager','email'=>'manager@manager.com','password'=>bcrypt('manager@manager.com'),'role_id'=>2])
+    //User::create(['name'=>'User','email'=>'user@user.com','password'=>bcrypt('user@user.com'),'role_id'=>3])
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +30,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -41,4 +51,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /** Custom accessors below
+     * @return bool
+     */
+
+
+    public function getIsAdminAttribute(){
+        return $this->role_id == self::ADMIN_ROLE_ID;
+    }
+
+    public function getIsManagerAttribute(){
+        return $this->role_id == self::MANAGER_ROLE_ID;
+    }
+
+    public function getIsUserAttribute(){
+        return $this->role_id == self::USER_ROLE_ID;
+    }
+
+
 }
