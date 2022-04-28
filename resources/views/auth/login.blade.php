@@ -1,5 +1,63 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card-group d-block d-md-flex row">
+                <div class="card col-md-7 p-4 mb-0">
+                    <div class="card-body">
+                        <h1>{{ __('Login') }}</h1>
+                        <p class="text-medium-emphasis">{{ __('Login Desc') }}</p>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="input-group mb-3"><span class="input-group-text">
+                                <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                                </svg></span>
+                                <input type="email" placeholder="{{ __('Email Address') }}"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="input-group mb-4"><span class="input-group-text">
+                                <svg class="icon">
+                                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                                </svg></span>
+                                <input  type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-primary px-4" type="submit"> {{ __('Login') }}</button>
+                                    <a class="btn btn-outline-primary px-4" href="{{ route('register') }}"> {{ __('Register') }}</a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link px-0" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+@endsection
+
+
+
+{{--
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -71,3 +129,4 @@
     </div>
 </div>
 @endsection
+--}}
