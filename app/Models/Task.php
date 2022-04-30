@@ -12,5 +12,8 @@ class Task extends Model
 
     protected $fillable = ['checklist_id','name','description','position'];
 
-
+    public function checklist()
+    {
+        return $this->belongsTo(Checklist::class);
+    }
 }

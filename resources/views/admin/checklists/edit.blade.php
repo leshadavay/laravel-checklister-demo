@@ -52,39 +52,8 @@
             <div class="card mt-5">
 
                 <div class="card-header text-center"><h5> {{ __('List of Tasks') }} </h5></div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">{{__('Task name')}}</th>
-                        <th scope="col">{{__('Task description')}}</th>
-                        <th scope="col">{{__('Created date')}}</th>
-                        <th scope="col">{{__('Actions')}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($checklist->tasks as $task)
-                        <tr>
-                            <td>{{$task->id}}</td>
-                            <td>{{$task->name}}</td>
-                            <td>{{$task->description}}</td>
-                            <td>{{$task->created_at}}</td>
-                            <td>
-                                <a class="btn btn-sm btn-info" href="{{route('admin.checklists.tasks.edit',[$checklist,$task])}}">
-                                    {{__('Edit')}}
-                                </a>
-                                <form class="d-inline" method="POST" action="{{route('admin.checklists.tasks.destroy',[$checklist,$task])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" type="submit"
-                                            onclick="return confirm('{{__('Are you sure?')}}')"
-                                    >{{__('Delete')}}</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+
+                @livewire('tasks-table',['checklist'=>$checklist])
 
             </div>
 
