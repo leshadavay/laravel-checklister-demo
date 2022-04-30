@@ -2,11 +2,11 @@
     <div class="container-fluid justify-content-end">
         <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
             <svg class="icon icon-lg">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+                <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-menu')}}"></use>
             </svg>
         </button><a class="header-brand d-md-none" href="#">
             <svg width="118" height="46" alt="CoreUI Logo">
-                <use xlink:href="assets/brand/coreui.svg#full"></use>
+                <use xlink:href="{{asset('assets/brand/coreui.svg#full')}}"></use>
             </svg></a>
         {{--<ul class="header-nav d-none d-md-flex">
             <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
@@ -32,7 +32,7 @@
         <ul class="header-nav me-3">
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <svg class="icon icon-lg my-1 mx-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-bell')}}"></use>
                     </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-danger-gradient">5</span></a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                     <div class="dropdown-header bg-light"><strong>You have 5 notifications</strong></div><a class="dropdown-item" href="#">
@@ -68,7 +68,7 @@
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <svg class="icon icon-lg my-1 mx-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-list-rich')}}"></use>
                     </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-warning-gradient">5</span></a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                     <div class="dropdown-header bg-light"><strong>You have 5 pending tasks</strong></div><a class="dropdown-item d-block" href="#">
@@ -96,7 +96,7 @@
             </li>
             <li class="nav-item dropdown d-md-down-none"><a class="nav-link" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <svg class="icon icon-lg my-1 mx-2">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-envelope-open')}}"></use>
                     </svg><span class="badge rounded-pill position-absolute top-0 end-0 bg-info-gradient">7</span></a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg pt-0">
                     <div class="dropdown-header bg-light"><strong>You have 4 messages</strong></div><a class="dropdown-item" href="#">
@@ -141,7 +141,7 @@
         </ul>
         <ul class="header-nav me-4">
             <li class="nav-item dropdown d-flex align-items-center"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"></div>
+                    <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('assets/img/avatars/8.jpg')}}" alt="user@email.com"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
