@@ -30,7 +30,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'website'
     ];
 
     /**
@@ -54,6 +55,7 @@ class User extends Authenticatable
 
 
     /** Custom accessors below
+     * usage: $user->is_admin
      * @return bool
      */
 
@@ -70,5 +72,20 @@ class User extends Authenticatable
         return $this->role_id == self::USER_ROLE_ID;
     }
 
+    //Scope a query to only admin users.
+    public function scopeAdmins($query)
+    {
+        $query->where('role_id',self::ADMIN_ROLE_ID);
+    }
+
+    public function scopeManagers($query)
+    {
+        $query->where('role_id',self::MANAGER_ROLE_ID);
+    }
+
+    public function scopeUsers($query)
+    {
+        $query->where('role_id',self::USER_ROLE_ID);
+    }
 
 }

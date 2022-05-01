@@ -9,7 +9,7 @@
 
 <div class="sidebar sidebar-dark sidebar-fixed sidebar-self-hiding-xl" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
-        <a href="{{route('home')}}" class="badge btn btn-sm btn-danger">{{auth()->user()->name}}</a>
+        <a href="{{route('welcome')}}" class="badge btn btn-sm btn-danger">{{auth()->user()->name}}</a>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
 
@@ -84,11 +84,23 @@
                     </a>
                 </li>
             @endforeach
+
+            <li class="nav-title">{{__('Manage Users')}}</li>
+            <li class="nav-group">
+                <a class="nav-link" href="{{route('admin.users.index')}}">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
+                    </svg>
+                    {{__('Users')}}
+                </a>
+            </li>
         @endif
 
 
-        <hr>
-        <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}"
+        {{--<hr>
+        <li class="nav-item">
+
+            <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout')}}"></use>
@@ -98,7 +110,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
-        </li>
+        </li>--}}
 
 
 
