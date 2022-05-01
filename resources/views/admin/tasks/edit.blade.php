@@ -28,11 +28,12 @@
                             >
                         </div>
                         <div class="col-12">
-                            <label class="form-label" for="inputAddress2">{{__('Description')}}</label>
-                            <input class="form-control" id="inputAddress2" name="description" type="text"
+                            <label class="form-label" for="task-text-area">{{__('Description')}}</label>
+                            <textarea class="form-control" id="task-text-area" name="description" type="text"
                                    placeholder="{{__('Task description')}}"
-                                   value="{{old('description',$task->description)}}"
                             >
+                                {{old('description',$task->description)}}
+                            </textarea>
                         </div>
                         <div class="col-12 d-inline">
                             <button class="btn btn-primary mt-3" type="submit">{{__('Save Task')}}</button>
@@ -43,4 +44,13 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#task-text-area' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

@@ -13,7 +13,7 @@
         <tr wire:sortable.item="{{$task->id}}" wire:key="task-{{$task->id}}" >
             <td>{{$task->id}}</td>
             <td>{{$task->name}}</td>
-            <td>{{$task->description}}</td>
+            <td>{!! $task->description !!}</td>
             <td>{{$task->created_at}}</td>
             <td>
                 <a class="btn btn-sm btn-info" href="{{route('admin.checklists.tasks.edit',[$checklist,$task])}}">
