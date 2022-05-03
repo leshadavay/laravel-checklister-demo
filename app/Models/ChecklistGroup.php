@@ -17,4 +17,7 @@ class ChecklistGroup extends Model
         return $this->hasMany(Checklist::class);
     }
 
+
+
+
 }

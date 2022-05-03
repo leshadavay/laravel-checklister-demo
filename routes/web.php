@@ -14,9 +14,7 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'welcome');
 
 Auth::routes();
 
@@ -26,6 +24,10 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::get('welcome',[Controllers\PageController::class,'welcome'])->name('welcome');
     Route::get('consultation',[Controllers\PageController::class,'consultation'])->name('consultation');
+
+    Route::group(['prefix' => 'user','as'=> 'user.', 'middleware'=>'is_user'],function(){
+        Route::get('checklists/{checklist}',[Controllers\User\ChecklistController::class,'show'])->name('checklists.show');
+    });
 
 
     //'as'=> 'admin.' => route name would start like 'admin.bla bla'

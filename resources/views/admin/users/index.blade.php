@@ -20,7 +20,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $user)
-                                    <tr >
+                                    <tr>
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->created_at}}</td>
                                         <td>{{$user->name}}</td>

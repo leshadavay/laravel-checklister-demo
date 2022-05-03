@@ -14,12 +14,6 @@
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
 
 
-        <li class="nav-item"><a class="nav-link" href="index.html">
-                <svg class="nav-icon">
-                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer')}}"></use>
-                </svg> {{__('Dashboard')}} </a>
-        </li>
-
         @if(auth()->user()->is_admin)
 
             <li class="nav-title">{{__('Manage Checklist')}}</li>
@@ -50,13 +44,15 @@
                             @foreach($group->checklists as $checklist)
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('admin.checklist_groups.checklists.edit',[$group, $checklist])}}">
-                                        <span class="nav-icon"></span>  {{__($checklist->name)}}
+                                        <span class="nav-icon"></span>  {{$checklist->name}}
                                     </a>
                                 </li>
                             @endforeach
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('admin.checklist_groups.checklists.create',$group)}}">
-                                        <span class="nav-icon"></span>  {{__("New checklist")}}
+                                        <svg class="nav-icon">
+                                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-library-add')}}"></use>
+                                        </svg>  {{__("New checklist")}}
                                     </a>
                                 </li>
                             </ul>
@@ -84,9 +80,9 @@
                     </a>
                 </li>
             @endforeach
-
             <li class="nav-title">{{__('Manage Users')}}</li>
-            <li class="nav-group">
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.users.index')}}">
                     <svg class="nav-icon">
                         <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
@@ -94,6 +90,24 @@
                     {{__('Users')}}
                 </a>
             </li>
+        @endif
+
+        @if(auth()->user()->is_user)
+
+                @foreach(\App\Models\ChecklistGroup::with(['checklists'=>function($query){ $query->whereNull('user_id'); }])->get() as $group )
+
+                    <li class="nav-title">{{$group->name}}</li>
+                        @foreach($group->checklists as $checklist)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('user.checklists.show',[$checklist])}}">
+                                    <span class="nav-icon"></span>  {{$checklist->name}}
+                                </a>
+                            </li>
+                        @endforeach
+
+                @endforeach
+
+
         @endif
 
 
