@@ -94,7 +94,7 @@
 
         @if(auth()->user()->is_user)
 
-                @foreach(\App\Models\ChecklistGroup::with(['checklists'=>function($query){ $query->whereNull('user_id'); }])->get() as $group )
+                @foreach($user_menu as $group )
 
                     <li class="nav-title">{{$group->name}}</li>
                         @foreach($group->checklists as $checklist)
