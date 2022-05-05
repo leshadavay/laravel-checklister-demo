@@ -11,7 +11,7 @@ class ChecklistService
 
     public function sync_checklist(Checklist $checklist,int $user_id){
 
-        return Checklist::firstOrCreate(
+        $checklist = Checklist::firstOrCreate(
             [
             'user_id'   =>  $user_id,
             'checklist_id'  =>  $checklist->id,
@@ -23,6 +23,11 @@ class ChecklistService
             'checklist_group_id'    =>  $checklist->checklist_group_id,
             ]
         );
+
+        //update 'updated_at' timestamp
+        $checklist->touch();
+
+        return $checklist;
 
     }
 

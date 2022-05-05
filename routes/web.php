@@ -18,9 +18,9 @@ Route::redirect('/', 'welcome');
 
 Auth::routes();
 
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
+/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome');*/
 
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>['auth','save_last_action_timestamp']],function(){
 
     Route::get('welcome',[Controllers\PageController::class,'welcome'])->name('welcome');
     Route::get('consultation',[Controllers\PageController::class,'consultation'])->name('consultation');
@@ -39,6 +39,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::resource('checklists.tasks',Controllers\Admin\TaskController::class);
         Route::resource('checklist_groups',Controllers\Admin\ChecklistGroupController::class);
         Route::resource('checklist_groups.checklists',Controllers\Admin\ChecklistController::class);
+
+        Route::post('images',[Controllers\Admin\ImageController::class,'store'])->name('images.store');
     });
 
 

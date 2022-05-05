@@ -21,7 +21,7 @@ class ChecklistGroupController extends Controller
     public function store(StoreChecklistGroupRequest $request): RedirectResponse
     {
         ChecklistGroup::create($request->validated());
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
 
@@ -36,7 +36,7 @@ class ChecklistGroupController extends Controller
     {
         $checklistGroup->update($request->validated());
 
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 
 
@@ -44,6 +44,6 @@ class ChecklistGroupController extends Controller
     {
         //soft delete
         $checklistGroup->delete();
-        return redirect()->route('home');
+        return redirect()->route('welcome');
     }
 }

@@ -26,7 +26,7 @@
                 </a>
                 <ul class="nav-group-items" style="height: auto;">
 
-                @foreach(\App\Models\ChecklistGroup::with('checklists')->get() as $group )
+                @foreach($admin_menu as $group )
 
                         <li class="nav-group" aria-expanded="false" >
 
@@ -96,12 +96,24 @@
 
                 @foreach($user_menu as $group )
 
-                    <li class="nav-title">{{$group->name}}</li>
-                        @foreach($group->checklists as $checklist)
+                    <li class="nav-title">{{$group['name']}}
+                        @if($group['is_new'])
+                            <span class="badge bg-success ms-auto float-end">{{__('NEW')}}</span>
+                        @elseif($group['is_updated'])
+                            <span class="badge bg-success ms-warning float-end">{{__('UPDATED')}}</span>
+                        @endif
+                    </li>
+                        @foreach($group['checklists'] as $checklist)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('user.checklists.show',[$checklist])}}">
-                                    <span class="nav-icon"></span>  {{$checklist->name}}
+                                <a class="nav-link d-flex justify-content-around" href="{{route('user.checklists.show',[$checklist['id']])}}">
+                                    <span class="nav-icon"></span>  {{$checklist['name']}}
+                                    @if($checklist['is_new'])
+                                        <span class="badge badge-sm bg-success ms-auto">{{__('NEW')}}</span>
+                                    @elseif($checklist['is_updated'])
+                                        <span class="badge badge-sm bg-success ms-warning">{{__('UPDATED')}}</span>
+                                    @endif
                                 </a>
+
                             </li>
                         @endforeach
 
