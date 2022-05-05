@@ -46,11 +46,5 @@
 </div>
 @endsection
 @section('scripts')
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#task-text-area' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
+    @include('admin.skeditor')
 @endsection

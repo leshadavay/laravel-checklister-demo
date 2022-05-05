@@ -3,7 +3,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">{{__('Task name')}}</th>
-        <th scope="col">{{__('Task description')}}</th>
+        {{--<th scope="col">{{__('Task description')}}</th>--}}
         <th scope="col">{{__('Created date')}}</th>
         <th scope="col">{{__('Actions')}}</th>
     </tr>
@@ -13,7 +13,7 @@
         <tr wire:sortable.item="{{$task->id}}" wire:key="task-{{$task->id}}" >
             <td>{{$task->id}}</td>
             <td>{{$task->name}}</td>
-            <td>{!! $task->description !!}</td>
+            {{--<td>{!! $task->description !!}</td>--}}
             <td>{{$task->created_at}}</td>
             <td>
                 <a class="btn btn-sm btn-info" href="{{route('admin.checklists.tasks.edit',[$checklist,$task])}}">
