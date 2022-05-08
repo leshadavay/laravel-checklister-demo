@@ -14,18 +14,34 @@ class TasksTable extends Component
     public function render()
     {
         //can also re-run after updateTaskOrder()
-        $tasks = $this->checklist->tasks()->orderBy('position')->get();
+        $tasks = $this->checklist->tasks()
+            ->where('user_id', null)
+            ->orderBy('position')->get();
 
-        return view('livewire.tasks-table',compact('tasks'));
+        return view('livewire.tasks-table', compact('tasks'));
     }
 
-    //bind in html component => wire:sortable="updateTaskOrder"
-    public function updateTaskOrder($tasks){
-
-        foreach ($tasks as $task){
-            Task::find($task['value'])->update(['position'=>$task['order']]);
+    //bind in blade component => <a wire:click.prevent="task_down({{$task->id}})" href="#"/>
+    public function task_up($task_id)
+    {
+        $task = Task::find($task_id);
+        if($task){
+            Task::whereNull('user_id')->where('position',$task->position-1)->update([
+                'position'  =>  $task->position
+            ]);
+            $task->update(['position'=>$task->position-1]);
         }
+    }
 
+    public function task_down($task_id)
+    {
+        $task = Task::find($task_id);
+        if($task){
+            Task::whereNull('user_id')->where('position',$task->position+1)->update([
+                'position'  =>  $task->position
+            ]);
+            $task->update(['position'=>$task->position + 1]);
+        }
     }
 
 }

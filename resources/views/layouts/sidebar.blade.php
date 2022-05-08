@@ -106,7 +106,14 @@
                         @foreach($group['checklists'] as $checklist)
                             <li class="nav-item">
                                 <a class="nav-link d-flex justify-content-around" href="{{route('user.checklists.show',[$checklist['id']])}}">
-                                    <span class="nav-icon"></span>  {{$checklist['name']}}
+                                    <span class="nav-icon"></span>
+                                    {{$checklist['name']}}
+                                    @livewire('completed-tasks-counter',[
+                                        'completed_tasks'=> count($checklist['user_tasks']),
+                                        'tasks_count'=>count($checklist['tasks']),
+                                        'checklist_id'=>$checklist['id']
+                                    ])
+
                                     @if($checklist['is_new'])
                                         <span class="badge badge-sm bg-success ms-auto">{{__('NEW')}}</span>
                                     @elseif($checklist['is_updated'])

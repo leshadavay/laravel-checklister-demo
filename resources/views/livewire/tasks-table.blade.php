@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover" wire:sortable="updateTaskOrder">
+<table class="table table-striped table-hover" >
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -10,8 +10,20 @@
     </thead>
     <tbody>
     @foreach($tasks as $task)
-        <tr wire:sortable.item="{{$task->id}}" wire:key="task-{{$task->id}}" >
-            <td>{{$task->id}}</td>
+        <tr>
+            <td>
+                @if($task->position > 1)
+                <a class="text-decoration-none" wire:click.prevent="task_up({{$task->id}})" href="#">
+                    &uarr;
+                </a>
+                @endif
+                @if($task->position < $tasks->max('position'))
+                <a class="text-decoration-none" wire:click.prevent="task_down({{$task->id}})" href="#">
+                    &darr;
+                </a>
+                @endif
+            </td>
+            {{--<td>{{$task->id}}</td>--}}
             <td>{{$task->name}}</td>
             {{--<td>{!! $task->description !!}</td>--}}
             <td>{{$task->created_at}}</td>

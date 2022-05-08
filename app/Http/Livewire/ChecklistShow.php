@@ -36,6 +36,8 @@ class ChecklistShow extends Component
 
     }
 
+
+    //wire:click="complete_task({{$task->id}})
     public function complete_task($task_id)
     {
         $task = Task::find($task_id);
@@ -43,7 +45,9 @@ class ChecklistShow extends Component
             return;
         }
 
-        $user_task = Task::where('task_id',$task_id)->first();
+        $user_task = Task::where('task_id',$task_id)
+            ->where('user_id',auth()->id())
+            ->first();
 
         if($user_task){
             if(is_null($user_task->completed_at)){
@@ -58,6 +62,10 @@ class ChecklistShow extends Component
             $user_task->save();
         }
 
+        $this->emit('task_complete',
+            $task_id,
+            $task->checklist_id
+        );
 
 
 
